@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NBN Network Challenge</title>
+<link rel="icon" type="image/gif" href="favicon.gif">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    h2{
+        font-family: sans-serif;
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin: 20px 20px 20px 20px;
+        text-align: left;
+        width: 80%;
+    }
+
+    ul {
+    list-style-image: url('plane.png');
+    margin-left: 20px;
+    width: 80%;
+}
+
+    footer {
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+        width: 80%;
+    }
+
+    canvas {
+      background-color: #f0f0f0; 
+      background-image: url('map1.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      border: 1px solid #000;
+    }
+  
+    .color-sample {
+      width: 10mm; 
+      height: 2mm; 
+      display: inline-block;
+    }
+  
+    table#legend {
+      border-collapse: collapse;
+      margin-top: 20px; 
+      width: 80%;
+    }
+  
+    table#legend, table#legend th, table#legend td {
+      border: 1px solid black; 
+      padding: 5px; 
+    }
+  
+    table#legend th {
+      background-color: #f0f0f0; 
+    }
+  
+    table#weights {
+      border-collapse: collapse;
+      margin-top: 20px; 
+      width: 80%;
+    }
+  
+    table#weights, table#weights th, table#weights td {
+      border: 1px solid black; 
+      padding: 5px; 
+    }
+  
+    table#weights th {
+      background-color: #f0f0f0; 
+    }
+
+    table#task {
+      border-collapse: collapse;
+      margin-top: 20px; 
+      width: 80%;
+    }
+  
+    table#task, table#task th, table#task td {
+      border: 1px solid black; 
+      padding: 5px; 
+    }
+  
+    table#task th {
+      background-color: #f0f0f0; 
+    }
+  </style>
+</head>
+<body>
+    <img src="nbnheader.gif" alt="NBN Header" style="width:100%; height:auto;">
+   <p>The NBN is an Australia-wide project funded by the federal government to provide reliable and fast internet service to all Australians. It encompasses various types of connections as shown in the table below.</p>
+      <table id="legend">
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Color</th>
+        </tr>
+        <tr>
+          <td>FTTP</td>
+          <td>Direct fibre optic connection to homes or businesses, offering high speeds.</td>
+          <td><div class="color-sample" style="background-color: red;"></div></td>
+        </tr>
+        <tr>
+          <td>FTTN</td>
+          <td>Fibre optic cables run to a central node in an area, and existing copper wire networks are used to connect the node to individual premises.</td>
+          <td><div class="color-sample" style="background-color: blue;"></div></td>
+        </tr>
+        <tr>
+          <td>FTTC</td>
+          <td>Similar to FTTN but with fibre extended closer to the premises, to a street cabinet or curb.</td>
+          <td><div class="color-sample" style="background-color: yellow;"></div></td>
+        </tr>
+        <tr>
+          <td>HFC</td>
+          <td>Utilises existing pay TV or cable network lines to deliver internet access.</td>
+          <td><div class="color-sample" style="background-color: green;"></div></td>
+        </tr>
+        <tr>
+          <td>Fixed Wireless</td>
+          <td>Provides internet service via radio signals from a transmission tower to an antenna fitted at the premises, used in some rural areas.</td>
+          <td><div class="color-sample" style="background-color: grey;"></div></td>
+        </tr>
+        <tr>
+          <td>Satellite</td>
+          <td>Uses satellite technology to provide internet services to remote areas where other forms of broadband are not available.</td>
+          <td><div class="color-sample" style="background-color: black;"></div></td>
+        </tr>
+      </table>
+      <p style="text-align:left">To determine the optimal broadband deployment strategy, we can assign mathematical weights to the different types of connections. The weights reflect the speed, cost, and scalability of each connection type in the given geographic location. Lower weights indicating more desirable options.</p>
+      <h2>Scenario: Coastal City</h2>
+      <p style="text-align:left">Wollongong is a coastal city bounded by the Tasman Sea and the Great Dividing mountain range.
+      These geographical factors influence the weighting of connection types in that some areas might have limited access due to geographical barriers.</p>
+      <table id="weights">
+        <tr>
+          <th>Connection</th>
+          <th>Factors</th>
+          <th>Weight</th>
+        </tr>
+        <tr>
+          <td>FTTP (Fibre to the Premises)</td>
+          <td>The initial cost might be significantly higher due to geographical challenges. The weight remains the lowest due to superior long-term benefits.</td>
+          <td>1.0</td>
+        </tr>
+        <tr>
+          <td>FTTC (Fibre to the Curb)</td>
+          <td>A good compromise between cost and performance, particularly if laying fibre to individual premises is prohibitively expensive. The slightly higher weight reflects increased installation challenges in rugged terrain.</td>
+          <td>2.5</div></td>
+        </tr>
+        <tr>
+          <td>FTTN (Fibre to the Node)</td>
+          <td>Moderate speed and scalability, with somewhat lower installation costs than FTTP/FTTC, but potentially higher maintenance costs due to reliance on existing copper lines.</td>
+          <td>3.0</td>
+        </tr>
+        <tr>
+          <td>HFC (Hybrid Fibre-Coaxial)</td>
+          <td>If existing infrastructure is available, it can offer high speeds. However, upgrade and maintenance costs in hard-to-reach areas could be a concern.</td>
+          <td>3.5</td>
+        </tr>
+        <tr>
+          <td>Fixed Wireless</td>
+          <td>In a regional city with geographical barriers, fixed wireless becomes more attractive due to lower installation costs and good coverage, assuming line-of-sight can be established over or around natural obstacles.</td>
+          <td>2.0</div></td>
+        </tr>
+        <tr>
+          <td>Satellite</td>
+          <td>While satellite offers widespread coverage, its higher latency, lower speeds, and susceptibility to weather make it less ideal than terrestrial options.</td>
+          <td>4.5</td>
+        </tr>
+      </table>
+      <table id="task">
+      <tr>
+        <th>Design Task</th>
+        <th>Information</th>
+      </tr>
+      <tr>
+      <td>Using a <b>maximum</b> of two types of <b>fixed line</b> connections, design a broadband internet network to cover this area.<br><br>
+    <b>Stimulus Questions</b><br>
+    <ul><li>What was your first choice fixed line technology and why?</li>
+    <li>In which part of the city would you use this technology?</li>
+    <li>What was your second choice fixed line technology and why?</li></ul>
+    </td>
+      <td><ul><li>Transit Fibre exists up to the FAN (blue marker).</li>
+        <li>Existing HFC is available however requires significant investment and timne to repair defects.</li>
+        <li>Built up areas have existing copper telephone connections to the curb.</li>
+        <li>Population density is greatest in the south-east of the area.</li></ul>
+      </td></tr></table>
+      <h2>Instructions</h2>
+      <ul><li>Select a connection technology <select id="segmentType">
+        <option value="FTTP" title="Direct fibre optic connection to homes or businesses, offering high speeds.">FTTP</option>
+        <option value="FTTN" title="Fibre optic cables run to a central node in an area, and existing copper wire networks are used to connect the node to individual premises.">FTTN</option>
+        <option value="FTTC" title="Similar to FTTN but with fibre extended closer to the premises, to a street cabinet or curb.">FTTC</option>
+        <option value="HFC" title="Utilizes existing cable network lines to deliver internet access.">HFC</option>
+        <option value="Fixed Wireless" title="Provides internet service via radio signals from a transmission tower to an antenna fitted at the premises, used in some rural areas.">Fixed Wireless</option>
+        <option value="Satellite" title="Uses satellite technology to provide internet services to remote areas where other forms of broadband are not available.">Satellite</option>
+        </select></li>
+      <li>Click on the map to create a start node.</li>
+      <li>Click again on the map to create a end node and create a network segment. The connection type of a segment can be changed by selecting the new type and clicking the start and end nodes.</li>
+      <li>Repeat steps 1 to 3 to extend the network by creating new segments starting on an existing node.</li>
+      <li> When you have completed the network, click <button onclick="checkDesign()">Check Design</button> to recieve a score on your design.</li></ul>
+    <h2><div id="totalWeight"></div></h2>
+    <canvas id="networkCanvas" width="800" height="600" style="border:1px solid #000;"></canvas>
+<script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+    let segments = []; 
+    const nodeRadius = 2; 
+    const selectionThreshold = mmToPixels(nodeRadius) * 2; 
+
+    function mmToPixels(mm) {
+    return mm * (96 / 25.4); 
+    }
+
+    let tempNodeIndex = -1; 
+    const connectionWeights = {
+    "FTTP": 1.0,
+    "FTTC": 2.5,
+    "FTTN": 3.0,
+    "HFC": 3.5,
+    "Fixed Wireless": 2.0,
+    "Satellite": 4.5
+    };
+
+    const connectionColors = {
+    "FTTP": "red",
+    "FTTN": "blue",
+    "FTTC": "yellow",
+    "HFC": "green",
+    "Fixed Wireless": "grey",
+    "Satellite": "black",
+    };
+
+    canvas.addEventListener('click', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const clickedNodeIndex = findNodeNearClick(x, y);
+        
+        if (clickedNodeIndex !== -1) {
+        if (tempNodeIndex === -1) {
+            tempNodeIndex = clickedNodeIndex;
+        } else {
+            createOrUpdateSegment(tempNodeIndex, clickedNodeIndex);
+            tempNodeIndex = -1; 
+        }
+        } else {
+        const newNodeIndex = nodes.length;
+        nodes.push({x: x, y: y, index: newNodeIndex});
+        drawNode(x, y);
+        if (tempNodeIndex !== -1) {
+            createOrUpdateSegment(tempNodeIndex, newNodeIndex);
+            tempNodeIndex = -1; 
+        } else {
+            tempNodeIndex = newNodeIndex;
+        }
+        }
+    });
+
+    function findNodeNearClick(x, y) {
+    for (let i = 0; i < nodes.length; i++) {
+        const dx = nodes[i].x - x;
+        const dy = nodes[i].y - y;
+        if (Math.sqrt(dx * dx + dy * dy) <= selectionThreshold) {
+        return i;
+        }
+    }
+    return -1;
+    }
+
+    function findSegment(startIndex, endIndex) {
+    return segments.findIndex(s => (s.start === startIndex && s.end === endIndex) || (s.start === endIndex && s.end === startIndex));
+    }
+
+    function drawNode(x, y) {
+    ctx.fillStyle = 'black';
+    ctx.beginPath();
+    ctx.arc(x, y, mmToPixels(nodeRadius), 0, Math.PI * 2);
+    ctx.fill();
+    }
+
+    function drawAllSegments() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    nodes.forEach(node => drawNode(node.x, node.y)); 
+    segments.forEach(segment => {
+        const startNode = nodes[segment.start];
+        const endNode = nodes[segment.end];
+        drawSegment(startNode, endNode, segment.type);
+    });
+    }
+
+    function drawSegment(startNode, endNode, type) {
+    const color = connectionColors[type];
+    ctx.strokeStyle = color; 
+    ctx.lineWidth = 2;
+    
+    ctx.beginPath();
+    ctx.moveTo(startNode.x, startNode.y);
+    ctx.lineTo(endNode.x, endNode.y);
+    ctx.stroke();
+    }
+    function createOrUpdateSegment(firstNodeIndex, secondNodeIndex) {
+    const segmentType = document.getElementById('segmentType').value;
+    const weight = connectionWeights[segmentType]; 
+    if (isNaN(weight)) {
+        console.error('Invalid weight for segment type: ' + segmentType);
+        return; 
+    }
+    const existingSegmentIndex = findSegment(firstNodeIndex, secondNodeIndex);
+    if (existingSegmentIndex === -1) {
+        segments.push({start: firstNodeIndex, end: secondNodeIndex, type: segmentType, weight: weight});
+        drawSegment(nodes[firstNodeIndex], nodes[secondNodeIndex], segmentType);
+    } else {
+        segments[existingSegmentIndex].type = segmentType;
+        segments[existingSegmentIndex].weight = weight;
+        drawAllSegments();
+    }
+    }
+
+    function checkDesign() {
+    let totalWeight = segments.reduce((acc, segment) => {
+        return acc + (isNaN(segment.weight) ? 0 : segment.weight);
+    }, 0);
+    document.getElementById("totalWeight").innerText = "Total Weight: " + totalWeight.toFixed(1);
+    }
+</script>   
+</body>
+<footer>
+    &copy; NBN Discovery Center 2024
+</footer>
+</html>
+
+
+  
+
+  
