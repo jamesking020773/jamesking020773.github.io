@@ -336,7 +336,7 @@
     let totalWeight = segments.reduce((acc, segment) => {
         return acc + (isNaN(segment.weight) ? 0 : segment.weight);
     }, 0);
-    document.getElementById("totalWeight").innerText = "Total Weight: " + totalWeight.toFixed(1);
+    document.getElementById("totalWeight").innerText = "Score: " + totalWeight.toFixed(1);
     }
 </script>   
 </body>
