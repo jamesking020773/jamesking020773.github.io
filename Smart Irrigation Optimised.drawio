@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="Page-1" id="aMH86atn_zBFC1dDe0J-">
-    <mxGraphModel dx="1366" dy="864" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1766" dy="703" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -131,9 +131,8 @@
             <mxPoint x="460" y="170" as="targetPoint" />
             <Array as="points">
               <mxPoint x="240" y="890" />
-              <mxPoint x="160" y="890" />
-              <mxPoint x="160" y="720" />
-              <mxPoint x="160" y="170" />
+              <mxPoint x="174" y="890" />
+              <mxPoint x="174" y="170" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -173,6 +172,18 @@
           <mxGeometry x="0.0625" y="2" relative="1" as="geometry">
             <mxPoint x="-2" y="2" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-33" value="" style="swimlane;startSize=0;labelBorderColor=#00CC00;textShadow=1;strokeWidth=2;strokeColor=#2e7acc;" vertex="1" parent="1">
+          <mxGeometry x="-3" y="176" width="733" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-34" value="Operational Data" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="AhclVzLR4nrx0OqxUoMz-33">
+          <mxGeometry x="15" y="14" width="155" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-35" value="" style="swimlane;startSize=0;labelBorderColor=#3333FF;textShadow=0;labelBackgroundColor=none;strokeWidth=2;strokeColor=#00CC00;" vertex="1" parent="1">
+          <mxGeometry x="-3" y="403" width="733" height="295" as="geometry" />
+        </mxCell>
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-36" value="Optimisation Data" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="AhclVzLR4nrx0OqxUoMz-35">
+          <mxGeometry x="15" y="14" width="155" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
