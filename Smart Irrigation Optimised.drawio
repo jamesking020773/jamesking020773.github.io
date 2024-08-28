@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="Page-1" id="aMH86atn_zBFC1dDe0J-">
-    <mxGraphModel dx="318" dy="206" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1363" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,7 +10,7 @@
         <mxCell id="AhclVzLR4nrx0OqxUoMz-2" value="Read Sensor" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
           <mxGeometry x="385" y="190" width="150" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-3" value="sensor &amp;lt; sensor_threshold" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-3" value="sensor reading &amp;lt; threshold" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="360" y="260" width="200" height="100" as="geometry" />
         </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-4" value="Turn water on" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
@@ -36,7 +36,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-12" value="True (Soil is dry)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-8">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-12" value="True (Soil is too dry)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-8">
           <mxGeometry x="-0.2276" y="3" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -50,12 +50,12 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-11" value="True (Its going to rain)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-10">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-11" value="True (It&#39;s going to rain)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-10">
           <mxGeometry x="-0.7937" relative="1" as="geometry">
             <mxPoint x="-27" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="AhclVzLR4nrx0OqxUoMz-3">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AhclVzLR4nrx0OqxUoMz-3" target="AhclVzLR4nrx0OqxUoMz-6">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="400" y="380" as="sourcePoint" />
             <mxPoint x="240" y="610" as="targetPoint" />
@@ -64,9 +64,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-14" value="False (Soil is wet)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-13">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-14" value="False (Soil is too wet)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-13">
           <mxGeometry x="-0.6281" y="-1" relative="1" as="geometry">
-            <mxPoint x="-12" y="1" as="offset" />
+            <mxPoint x="18" y="1" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-15" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AhclVzLR4nrx0OqxUoMz-7" target="AhclVzLR4nrx0OqxUoMz-4">
@@ -75,7 +75,7 @@
             <mxPoint x="450" y="692" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-16" value="False (Its not going to rain)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-15">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-16" value="False (It&#39;s not going to rain)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-15">
           <mxGeometry x="-0.1366" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -108,6 +108,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-31" value="False" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-20">
+          <mxGeometry x="-0.7095" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-21" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="AhclVzLR4nrx0OqxUoMz-2">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="400" y="310" as="sourcePoint" />
@@ -136,7 +141,7 @@
           <mxGeometry x="360" y="410" width="200" height="100" as="geometry" />
         </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-25" value="Get Forecast" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="640" y="440" width="100" height="40" as="geometry" />
+          <mxGeometry x="620" y="440" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-26" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="AhclVzLR4nrx0OqxUoMz-24" target="AhclVzLR4nrx0OqxUoMz-7">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -144,9 +149,9 @@
             <mxPoint x="460" y="550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AhclVzLR4nrx0OqxUoMz-27" value="True" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-26">
+        <mxCell id="AhclVzLR4nrx0OqxUoMz-27" value="True (the forecast is current)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-26">
           <mxGeometry x="-0.125" relative="1" as="geometry">
-            <mxPoint y="12" as="offset" />
+            <mxPoint y="7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-28" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="AhclVzLR4nrx0OqxUoMz-25">
@@ -154,7 +159,7 @@
             <mxPoint x="400" y="630" as="sourcePoint" />
             <mxPoint x="460" y="520" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="690" y="520" />
+              <mxPoint x="670" y="520" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -166,7 +171,7 @@
         </mxCell>
         <mxCell id="AhclVzLR4nrx0OqxUoMz-30" value="False" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="AhclVzLR4nrx0OqxUoMz-29">
           <mxGeometry x="0.0625" y="2" relative="1" as="geometry">
-            <mxPoint y="1" as="offset" />
+            <mxPoint x="-2" y="2" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
