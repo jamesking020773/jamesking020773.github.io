@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stella’s Kris Kringle Joke App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #f3f7ff;
+      --card-bg: #ffffff;
+      --accent: #c2185b;
+      --accent-soft: #ffe4ef;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe6f1 0, #f3f7ff 50%, #e0f7fa 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: var(--text-main);
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 12px;
+      right: -40px;
+      background: linear-gradient(135deg, #ff6f61, #c2185b);
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 50px;
+      transform: rotate(20deg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffe4ef 0, #c2185b 60%, #880e4f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .title-group h1 {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .title-group p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .subtitle-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle-chip span {
+      font-size: 14px;
+    }
+
+    .joke-box {
+      border-radius: var(--radius-lg);
+      background: #fafafa;
+      padding: 14px 12px;
+      margin-bottom: 14px;
+      position: relative;
+      border: 1px dashed rgba(0, 0, 0, 0.05);
+    }
+
+    .joke-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .joke-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .joke-text {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .joke-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-row {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    button#laughButton {
+      border: none;
+      outline: none;
+      border-radius: var(--radius-pill);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ff6f61, #c2185b);
+      box-shadow: 0 6px 15px rgba(194, 24, 91, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    button#laughButton:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 3px 8px rgba(194, 24, 91, 0.35);
+    }
+
+    .button-emoji {
+      font-size: 18px;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 480px) {
+      .card {
+        padding: 22px 22px 26px;
+      }
+      .joke-text {
+        font-size: 16px;
+      }
+      button#laughButton {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="card" aria-live="polite">
+      <div class="ribbon">Kris Kringle</div>
+
+      <header>
+        <div class="avatar" aria-hidden="true">S</div>
+        <div class="title-group">
+          <h1>Hi Stella 👋</h1>
+          <p>Your daily dose of ag, cattle &amp; Indonesian-flavoured giggles.</p>
+        </div>
+      </header>
+
+      <div class="subtitle-chip">
+        <span>🎄</span>
+        <span>Secret Santa Joke of the Day</span>
+      </div>
+
+      <main>
+        <section class="joke-box">
+          <div class="joke-label">
+            <span class="joke-label-dot"></span>
+            <span>Today’s chuckle</span>
+          </div>
+          <p id="jokeText" class="joke-text">
+            Loading a fresh joke from the paddock...
+          </p>
+          <div class="joke-meta">
+            <span id="jokeCategory">Agriculture • Staffroom-safe</span>
+            <span id="jokeCounter">Joke 1 of 50</span>
+          </div>
+        </section>
+
+        <div class="btn-row">
+          <button id="laughButton" type="button">
+            <span class="button-emoji">😂</span>
+            <span id="buttonLabel">Ready to show us that smile, Stella?</span>
+          </button>
+          <p class="hint">Tap the button for another joke from your Secret Santa elf.</p>
+        </div>
+      </main>
+
+      <footer>
+        Made with 🌾, 🐄 &amp; ❤️ for the Head of the Cattle Show Team.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Joke data: agriculture / teacher / Indonesian-flavoured, staffroom-safe.
+    // Each joke has text + category so we can show fun tags.
+    const jokes = [
+      {
+        text: "Why did the cow ask to join your agriculture class, Stella? It heard your lessons were absolutely moo-tivating.",
+        category: "Cattle • Classroom"
+      },
+      {
+        text: "Stella, your cattle are like your students: well-groomed, well-fed, and occasionally pretending not to hear instructions.",
+        category: "Cattle • Teacher Life"
+      },
+      {
+        text: "Why does the cattle show team always look so calm? Because they know their teacher has everything under con-troll.",
+        category: "Cattle Show • Puns"
+      },
+      {
+        text: "The pasture called, Stella. It said thanks for sending such well-educated cows. They’re now debating soil science.",
+        category: "Agriculture • Soil"
+      },
+      {
+        text: "Your students said they finally understand crop rotation… after you explained it using the recess duty roster.",
+        category: "Teaching • Crops"
+      },
+      {
+        text: "Why did the chicken cross the paddock? To enrol in Ms. Stella’s agriculture class, of course.",
+        category: "Poultry • Classroom"
+      },
+      {
+        text: "Stella, if punctuality were measured in litres of milk, your cattle team would win Grand Champion every year.",
+        category: "Cattle Show • Discipline"
+      },
+      {
+        text: "Your cattle halters are like your lesson plans: strong, reliable, and somehow holding everything together.",
+        category: "Planning • Cattle"
+      },
+      {
+        text: "One student said, “I finally get genetics, Miss!” That’s the power of explaining it with coat colours and calf selfies.",
+        category: "Genetics • Classroom"
+      },
+      {
+        text: "If marking assignments burned calories, Stella would power the whole school’s irrigation system.",
+        category: "Teacher Life • Energy"
+      },
+      {
+        text: "Why do cows love your practical lessons? Because when Stella says, “Let’s moo-ve outside,” everyone actually listens.",
+        category: "Cattle • Practical"
+      },
+      {
+        text: "Your whiteboard markers work harder than most tractors during harvest season.",
+        category: "Teaching • Tools"
+      },
+      {
+        text: "Stella, your classroom has more charts and diagrams than some research labs—and definitely better jokes.",
+        category: "Classroom • Science"
+      },
+      {
+        text: "If report comments grew on trees, you’d have the most productive orchard in the district.",
+        category: "Reports • Orchard"
+      },
+      {
+        text: "Why did the scarecrow ask to observe your lessons, Stella? It heard you’re outstanding in your field.",
+        category: "Field Work • Puns"
+      },
+      {
+        text: "Your cattle show team’s grooming kit is so shiny even the trophies are jealous.",
+        category: "Cattle Show • Shine"
+      },
+      {
+        text: "One cow told another, “If I behave well, maybe I’ll be in Stella’s top group for the show team.”",
+        category: "Cattle • Behaviour"
+      },
+      {
+        text: "Stella, your feed charts are so organised that even the cows line up alphabetically.",
+        category: "Organisation • Feed"
+      },
+      {
+        text: "Why do your students remember every lesson? Simple: no one forgets the day the teacher mooed to demonstrate cattle calls.",
+        category: "Classroom • Fun"
+      },
+      {
+        text: "If patience were fertiliser, Stella would have the greenest pasture on Earth.",
+        category: "Patience • Pasture"
+      },
+      {
+        text: "The cattle show judges whispered, “How does she keep both teenagers and heifers walking in straight lines?”",
+        category: "Cattle Show • Magic"
+      },
+      {
+        text: "Your Indonesian side must be why your lessons are perfectly seasoned: a little spice, a lot of warmth, and memorable flavour.",
+        category: "Culture • Classroom"
+      },
+      {
+        text: "If your class were a nasi goreng, Stella, it would be extra special: full of good ingredients and everyone wants seconds.",
+        category: "Indonesian • Food"
+      },
+      {
+        text: "Why do your students love practicals? Because it’s the only time they’re allowed to get as muddy as the cattle.",
+        category: "Practicals • Fun"
+      },
+      {
+        text: "Stella, your timetable is like a rice paddy: perfectly planned rows, slightly flooded with work, but growing something amazing.",
+        category: "Indonesian • Farming"
+      },
+      {
+        text: "One cow said, “I don’t need Wi-Fi, I have Stella. She explains everything clearly with diagrams and snacks.”",
+        category: "Cattle • Teaching"
+      },
+      {
+        text: "Your students finally understood biosecurity when you explained it as ‘No, you cannot pat every animal in Indonesia on one holiday.’",
+        category: "Biosecurity • Travel"
+      },
+      {
+        text: "Why did the seedlings cheer when you walked past, Stella? Because they heard you’re great at helping things grow.",
+        category: "Growth • Encouragement"
+      },
+      {
+        text: "Your classroom rules are like electric fences: invisible most of the time, but everyone respects the boundaries.",
+        category: "Classroom • Boundaries"
+      },
+      {
+        text: "If cows gave out teaching awards, your shelf would be full of golden cowbells.",
+        category: "Awards • Cattle"
+      },
+      {
+        text: "A student asked, “Miss, why do we learn about soil?” You replied, “Because even great ideas need good foundations, just like fences.”",
+        category: "Soil • Wisdom"
+      },
+      {
+        text: "Stella, your cattle grooming playlist is so good even the cows sway in rhythm.",
+        category: "Music • Cattle Show"
+      },
+      {
+        text: "If lesson planning were a sport, you’d be representing Indonesia and Australia at the same time.",
+        category: "Planning • Sport"
+      },
+      {
+        text: "Your lunchbox is more organised than most people’s filing cabinets—and probably smells nicer too.",
+        category: "Staffroom • Lunch"
+      },
+      {
+        text: "Why do the cows trust you, Stella? Because you always keep your promises: feed, care, and gentle pep talks before show day.",
+        category: "Trust • Cattle"
+      },
+      {
+        text: "Your students said your feedback is like good fertiliser: sometimes a bit strong, but it always helps them grow.",
+        category: "Feedback • Growth"
+      },
+      {
+        text: "If there were a subject called ‘Advanced Cow Whispering,’ you’d be the head of department.",
+        category: "Cattle • Whisperer"
+      },
+      {
+        text: "Stella, your Indonesian hospitality shows: people leave your classroom more full—of knowledge and random animal facts.",
+        category: "Culture • Hospitality"
+      },
+      {
+        text: "Why did the rice plant ask to do a presentation? It wanted to show it had deeper roots thanks to your lessons.",
+        category: "Rice • Roots"
+      },
+      {
+        text: "Your whiteboard survives more diagrams per day than most notebooks see in a year.",
+        category: "Teaching • Whiteboard"
+      },
+      {
+        text: "The cattle said they perform better at shows because you give the best pre-ring pep talks—and extra brushing.",
+        category: "Cattle Show • Care"
+      },
+      {
+        text: "If smiles were fertiliser, your laugh would turn the whole paddock bright green.",
+        category: "Positivity • Paddock"
+      },
+      {
+        text: "One student said, “Miss, you’re like good compost: quietly working in the background and making everything better.”",
+        category: "Compost • Compliment"
+      },
+      {
+        text: "Your marking pile is like a haystack: somehow you always find exactly what you’re looking for.",
+        category: "Marking • Haystack"
+      },
+      {
+        text: "Stella, your bilingual brain must be why you can translate ‘teenager’ into ‘useful farm worker’ so well.",
+        category: "Language • Teens"
+      },
+      {
+        text: "Why did the calf look so confident in the show ring? It had been practicing its runway walk in your paddock.",
+        category: "Cattle Show • Style"
+      },
+      {
+        text: "Your lesson on sustainability was so clear that even the cows started talking about reducing their hoof-print.",
+        category: "Sustainability • Cattle"
+      },
+      {
+        text: "If classroom jokes were a crop, Stella would be running the biggest comedy harvest festival in town.",
+        category: "Humour • Harvest"
+      },
+      {
+        text: "Your Kris Kringle helper says: thanks for all you do, from the staffroom to the show ring—now please accept this tiny daily chuckle.",
+        category: "Kris Kringle • Appreciation"
+      }
+    ];
+
+    const buttonLabels = [
+      "Ready to show us that smile, Stella?",
+      "1, 2, 3… laugh out loud, Stella!",
+      "Hit me for another chuckle, Stella!",
+      "Last joke was good… but this one’s better. Tap!",
+      "Warning: next joke may cause snorting.",
+      "Cattle are watching. Show them your best laugh.",
+      "Tap for instant staffroom-safe silliness.",
+      "From the paddock to your phone – tap for joy.",
+      "Secret Santa insists you tap for happiness.",
+      "Guaranteed 0% marking, 100% giggles. Tap!"
+    ];
+
+    let currentJokeIndex = -1;
+    let buttonLabelIndex = 0;
+
+    function getRandomJokeIndex() {
+      if (jokes.length <= 1) return 0;
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * jokes.length);
+      } while (idx === currentJokeIndex);
+      return idx;
+    }
+
+    function showRandomJoke() {
+      const jokeTextEl = document.getElementById("jokeText");
+      const jokeCategoryEl = document.getElementById("jokeCategory");
+      const jokeCounterEl = document.getElementById("jokeCounter");
+
+      const newIndex = getRandomJokeIndex();
+      currentJokeIndex = newIndex;
+
+      const joke = jokes[newIndex];
+      jokeTextEl.textContent = joke.text;
+      jokeCategoryEl.textContent = joke.category;
+      jokeCounterEl.textContent = `Joke ${newIndex + 1} of ${jokes.length}`;
+    }
+
+    function rotateButtonLabel() {
+      const labelEl = document.getElementById("buttonLabel");
+      labelEl.textContent = buttonLabels[buttonLabelIndex];
+      buttonLabelIndex = (buttonLabelIndex + 1) % buttonLabels.length;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initial joke & button label
+      showRandomJoke();
+      rotateButtonLabel();
+
+      const laughButton = document.getElementById("laughButton");
+      laughButton.addEventListener("click", () => {
+        showRandomJoke();
+        rotateButtonLabel();
+      });
+    });
+  </script>
+</body>
+</html>
