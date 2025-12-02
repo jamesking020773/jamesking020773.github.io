@@ -299,9 +299,7 @@
         Somewhere between the cattle yards and the classroom, Santa thought:
         “Stella deserves a smile break.” This is it. 💫
       </p>
-      <p class="chuckle-note">
-        Disclaimer: Secret Santa is great with childrens toys but average with telling jokes.
-      </p>
+
     </section><!-- Bottom "Joke of the Day" section -->
     <section class="joke-card" aria-live="polite">
       <div class="joke-header">
@@ -329,33 +327,16 @@
           <p id="jokeAnswer">
             This will be the punchline.
           </p>
-          <p id="answerPlaceholder" class="answer-placeholder">
-            Tap the button below to reveal the punchline.
-          </p>
-        </div>
-
-        <div class="joke-meta">
-
-          <span>Tap once to reveal, twice for a new joke.</span>
         </div>
       </div>
-
       <div class="btn-row">
         <button id="laughButton" type="button">
           <span class="button-emoji">😂</span>
           <span id="buttonLabel">Ready to show us that smile, Stella?</span>
         </button>
-        <p class="hint">
-          First tap: show the answer. Second tap: new joke from your Secret Santa elf.
-        </p>
       </div>
-
-      <footer>
-        Secret Santa approved for the Head of the Cattle Show Team.
-      </footer>
     </section>
   </div>
-
   <script>
     const jokes = [
       {
@@ -471,7 +452,6 @@
       const answerEl = document.getElementById("jokeAnswer");
       const counterEl = document.getElementById("jokeCounter");
       const answerBox = document.getElementById("answerBox");
-      const placeholderEl = document.getElementById("answerPlaceholder");
       const newIndex = getRandomJokeIndex();
       currentJokeIndex = newIndex;
       const joke = jokes[newIndex];
@@ -480,14 +460,12 @@
       counterEl.textContent = `Joke ${newIndex + 1} of ${jokes.length}`;
       answerVisible = false;
       answerBox.classList.add("hidden");
-      placeholderEl.style.display = "block";
     }
 
     function revealAnswer() {
       const answerBox = document.getElementById("answerBox");
       const placeholderEl = document.getElementById("answerPlaceholder");
       answerBox.classList.remove("hidden");
-      placeholderEl.style.display = "none";
       answerVisible = true;
     }
 
@@ -500,7 +478,6 @@
     document.addEventListener("DOMContentLoaded", () => {
       showNewJoke();
       rotateButtonLabel();
-
       const laughButton = document.getElementById("laughButton");
       laughButton.addEventListener("click", () => {
         if (!answerVisible) {
