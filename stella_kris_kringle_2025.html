@@ -296,11 +296,11 @@
       </div>
 
       <p class="chuckle-text">
-        Somewhere between the cattle yards and the classroom, someone thought:
+        Somewhere between the cattle yards and the classroom, Santa thought:
         “Stella deserves a smile break.” This is it. 💫
       </p>
       <p class="chuckle-note">
-        PS: Your Secret Santa is very impressed by your cattle… and your patience with teenagers.
+        Disclaimer: Secret Santa is great with childrens toys but average with telling jokes.
       </p>
     </section><!-- Bottom "Joke of the Day" section -->
     <section class="joke-card" aria-live="polite">
@@ -335,7 +335,7 @@
         </div>
 
         <div class="joke-meta">
-          <span id="jokeCategory">Agriculture • Staffroom-safe</span>
+
           <span>Tap once to reveal, twice for a new joke.</span>
         </div>
       </div>
@@ -351,121 +351,92 @@
       </div>
 
       <footer>
-        Made with 🌾, 🐄 &amp; ❤️ for the Head of the Cattle Show Team.
+        Secret Santa approved for the Head of the Cattle Show Team.
       </footer>
     </section>
   </div>
 
   <script>
-    // Joke data: Q & A style, agriculture / teacher / Indonesian-flavoured, staffroom-safe.
     const jokes = [
       {
         question: "Why did the cow ask to join your agriculture class, Stella?",
         answer: "It heard your lessons are absolutely moo-tivating.",
-        category: "Cattle • Classroom"
       },
       {
         question: "What do your cattle and your students have in common on show day?",
         answer: "They’re brushed, organised, and quietly hoping the judges don’t ask hard questions.",
-        category: "Cattle Show • Teacher Life"
       },
       {
         question: "Why do the cattle walk so nicely for you in the show ring?",
         answer: "Because they’ve seen what happens when students don’t follow instructions.",
-        category: "Cattle Show • Discipline"
       },
-
-
       {
         question: "What did one cow say to the other before your lesson on genetics?",
         answer: "“Pay attention. This might explain why your brother has that weird patch.”",
-        category: "Genetics • Cattle"
       },
-
       {
         question: "What did the tractor say after watching you teach all day?",
         answer: "“And people think I do the heavy work around here.”",
-        category: "Teacher Life • Workload"
       },
       {
         question: "Why do the cows trust you with show prep, Stella?",
         answer: "Because you always deliver: good feed, kind words, and extra brushing before the judges arrive.",
-        category: "Trust • Cattle Show"
       },
       {
         question: "Why is your whiteboard more tired than most tractors?",
         answer: "It survives more diagrams, arrows and ‘LAST WARNING’ notes every day than a tractor sees paddocks.",
-        category: "Teaching • Whiteboard"
       },
       {
         question: "What did the seedling say after your lesson on growth?",
         answer: "“With a teacher like that, I’m definitely reaching for the sun.”",
-        category: "Growth • Encouragement"
       },
       {
         question: "Why are your classroom rules like an electric fence?",
         answer: "Mostly invisible, very effective, and everyone learns quickly where the boundaries are.",
-        category: "Classroom • Boundaries"
       },
-
       {
         question: "What’s the secret ingredient in your agriculture lessons?",
         answer: "A mix of clear explanations, random animal stories, and just enough sarcasm.",
-        category: "Classroom • Style"
       },
       {
         question: "Why do your Indonesian side and your teaching style work so well together?",
         answer: "Because your lessons are like a good nasi goreng: warm, colourful, a bit spicy, and everyone wants seconds.",
-        category: "Indonesian • Food"
       },
       {
         question: "What did the show calf say when it saw the grooming kit you prepared?",
         answer: "“Wow. I’m about to look better than the teachers at assembly.”",
-        category: "Cattle Show • Grooming"
       },
       {
         question: "Why is your staffroom mug a bit like a water trough?",
         answer: "Because everyone gathers around it, but only you understand how essential it really is.",
-        category: "Staffroom • Coffee"
       },
       {
         question: "What did one report comment say to another on your laptop?",
         answer: "“If we were a crop, she’d absolutely deserve a bumper harvest bonus.”",
-        category: "Reports • Harvest"
       },
-
       {
         question: "Why is your timetable like a rice paddy, Stella?",
         answer: "Perfectly planned rows, slightly flooded with work, but always growing something amazing.",
-        category: "Timetable • Farming"
       },
       {
         question: "What did your bilingual brain do in class today?",
         answer: "Effortlessly translated ‘teenager’ into ‘useful farm worker’ during practical.",
-        category: "Language • Teens"
       },
-
       {
         question: "What did the compost heap say about your feedback?",
         answer: "“We’re both a bit strong sometimes, we definitely help things grow and occassional blended with just the right amount of Bullshit.”",
-        category: "Feedback • Compost"
       },
-
       {
         question: "Why do your lessons feel a bit like a festive Indonesian family dinner?",
         answer: "There’s lots happening at once, everyone’s talking, and somehow it all works beautifully.",
-        category: "Culture • Classroom"
       },
       {
         question: "What did the show judge whisper after your team left the ring?",
         answer: "“Well-trained cattle, well-trained kids… we should probably give Stella a trophy too.”",
-        category: "Cattle Show • Praise"
       },
-
       {
         question: "What does your Secret Santa want you to remember today?",
         answer: "That from the staffroom to the show ring, you are legendary so please enjoy this tiny daily chuckle.",
-        category: "Kris Kringle • Appreciation"
       }
     ];
 
@@ -498,21 +469,15 @@
     function showNewJoke() {
       const questionEl = document.getElementById("jokeQuestion");
       const answerEl = document.getElementById("jokeAnswer");
-      const categoryEl = document.getElementById("jokeCategory");
       const counterEl = document.getElementById("jokeCounter");
       const answerBox = document.getElementById("answerBox");
       const placeholderEl = document.getElementById("answerPlaceholder");
-
       const newIndex = getRandomJokeIndex();
       currentJokeIndex = newIndex;
       const joke = jokes[newIndex];
-
       questionEl.textContent = joke.question;
       answerEl.textContent = joke.answer;
-      categoryEl.textContent = joke.category;
       counterEl.textContent = `Joke ${newIndex + 1} of ${jokes.length}`;
-
-      // Hide answer initially
       answerVisible = false;
       answerBox.classList.add("hidden");
       placeholderEl.style.display = "block";
@@ -539,10 +504,8 @@
       const laughButton = document.getElementById("laughButton");
       laughButton.addEventListener("click", () => {
         if (!answerVisible) {
-          // First tap: show the answer
           revealAnswer();
         } else {
-          // Second tap (and beyond): new joke
           showNewJoke();
         }
         rotateButtonLabel();
